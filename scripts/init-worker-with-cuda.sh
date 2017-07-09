@@ -11,7 +11,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update'
 sudo apt-get install -y --allow-unauthenticated docker-engine
-sudo apt-get install -y --allow-unauthenticated kubelet kubeadm kubectl kubernetes-cni
+sudo apt-get install -y --allow-unauthenticated kubelet=1.6.6-00 kubeadm=1.6.6-00 kubectl=1.6.6-00 kubernetes-cni
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
