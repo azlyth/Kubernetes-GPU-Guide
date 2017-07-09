@@ -29,7 +29,7 @@ sudo sed -i '/^ExecStart=\/usr\/bin\/kubelet/ s/$/ --feature-gates="Accelerators
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 
-sudo kubeadm init --apiserver-advertise-address=$1
+sudo kubeadm init --kubernetes-version v1.6.6 --apiserver-advertise-address=$1
 sudo cp /etc/kubernetes/admin.conf $HOME/
 sudo chown $(id -u):$(id -g) $HOME/admin.conf
 export KUBECONFIG=$HOME/admin.conf

@@ -39,4 +39,4 @@ sudo sed -i '/^ExecStart=\/usr\/bin\/kubelet/ s/$/ --feature-gates="Accelerators
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 
-sudo kubeadm join --token $1 $2
+sudo kubeadm join --kubernetes-version v1.6.6 --token $1 $2
