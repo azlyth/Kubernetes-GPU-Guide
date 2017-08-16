@@ -34,9 +34,8 @@ do
 done
 
 # Avoid using a private internal IP by forcing the use of the external IP as the hostname
-EXTERNAL_IP=$(curl https://ipapi.co/ip)
 echo "Chosen ${FILE_NAME} as kubeadm.conf"
-sudo sed -i "/^ExecStart=\/usr\/bin\/kubelet/ s/$/ --feature-gates=\"Accelerators=true\" --hostname-override=$EXTERNAL_IP/" ${FILE_NAME}
+sudo sed -i "/^ExecStart=\/usr\/bin\/kubelet/ s/$/ --feature-gates=\"Accelerators=true\"/" ${FILE_NAME}
 
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
