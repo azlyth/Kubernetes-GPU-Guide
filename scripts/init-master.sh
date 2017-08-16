@@ -8,7 +8,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update'
 sudo apt-get install -y --allow-unauthenticated docker-engine
-sudo apt-get install -y --allow-unauthenticated kubelet=1.6.6-00 kubeadm=1.6.6-00 kubectl=1.6.6-00 kubernetes-cni
+sudo apt-get install -y --allow-unauthenticated kubelet kubeadm kubectl kubernetes-cni
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
@@ -29,10 +29,10 @@ sudo sed -i '/^ExecStart=\/usr\/bin\/kubelet/ s/$/ --feature-gates="Accelerators
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 
-sudo kubeadm init --kubernetes-version v1.6.6 --apiserver-advertise-address=$1
+sudo kubeadm init --apiserver-advertise-address=$1
 sudo cp /etc/kubernetes/admin.conf $HOME/
 sudo chown $(id -u):$(id -g) $HOME/admin.conf
 export KUBECONFIG=$HOME/admin.conf
 
-kubectl apply -f https://git.io/weave-kube-1.6
+kubectl apply -n kube-system -f "https://cloud.weave.works/k8s/v1.7/net"
 kubectl create -f https://git.io/kube-dashboard
